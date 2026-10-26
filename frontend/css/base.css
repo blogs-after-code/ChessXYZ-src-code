@@ -1,1 +1,21 @@
-/* base.css - see PLAN.md */
+/* base.css - reset, colors, typography */
+:root {
+  --bg: #14161a;
+  --panel: #1e2127;
+  --text: #e8eaed;
+  --muted: #9aa0a6;
+  --accent: #7fbf5f;
+  --error: #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+.message--error { color: var(--error); }
+.message--ok { color: var(--accent); }

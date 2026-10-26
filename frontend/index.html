@@ -4,12 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chess Creator Toolkit</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/board.css">
 </head>
 <body>
-  <!-- TODO (Phase 1): PGN input, board canvas, controls -->
+  <main class="app">
+    <h1>Chess Creator Toolkit</h1>
+
+    <section class="pgn-panel">
+      <label for="pgn-input">Paste a PGN</label>
+      <textarea id="pgn-input" rows="8" placeholder="1. e4 e5 2. Nf3 Nc6 ..."></textarea>
+      <button id="load-btn" type="button">Load game</button>
+      <p id="message" role="status"></p>
+    </section>
+
+  </main>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

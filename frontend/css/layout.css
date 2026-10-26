@@ -1,1 +1,34 @@
-/* layout.css - see PLAN.md */
+/* layout.css - page structure */
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.pgn-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--panel);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.pgn-panel textarea {
+  width: 100%;
+  font-family: monospace;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.pgn-panel button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  background: var(--accent);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}

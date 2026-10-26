@@ -3,8 +3,8 @@
 > **This file is the single source of truth for progress.** Product requirements live in [PRD.md](PRD.md).
 > Update it after every task and every phase (see "How to update this file").
 
-**Current phase:** [Phase 0: Setup](#phase-0-setup)
-**Next task:** Create the Git repo and get `frontend/index.html` loading in the browser
+**Current phase:** [Phase 1: Core engine](#phase-1-core-engine-weeks-1-5)
+**Next task:** Canvas board renders a position (`board.js`)
 **Last updated:** 2026-10-27
 
 Legend: `[ ]` not started, `[~]` in progress, `[x]` done
@@ -15,8 +15,8 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 
 | Phase | Goal | Status | Done / Total |
 |---|---|---|---|
-| [0](#phase-0-setup) | Setup | In progress | 0 / 4 |
-| [1](#phase-1-core-engine-weeks-1-5) | Core engine | Not started | 0 / 9 |
+| [0](#phase-0-setup) | Setup | Done except Stockfish row in THIRD_PARTY (do when Stockfish is added) | 3 / 4 |
+| [1](#phase-1-core-engine-weeks-1-5) | Core engine | In progress | 1 / 9 |
 | [2](#phase-2-memes-and-accounts-weeks-6-8) | Memes and accounts | Not started | 0 / 6 |
 | [3](#phase-3-money-and-first-publishing-weeks-9-12) | Payments and YouTube | Not started | 0 / 5 |
 | [4](#phase-4-later) | Later | Not started | 0 / 5 |
@@ -27,10 +27,10 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 
 **Goal:** repo, folders and a page that loads.
 
-- [ ] Create Git repo, first commit, push to GitHub
-- [ ] `frontend/index.html` loads with no console errors
-- [ ] Local dev server running (`npx serve .`)
-- [ ] Fill `docs/THIRD_PARTY.md` for chess.js and Stockfish
+- [x] Create Git repo, first commit, push to GitHub
+- [x] `frontend/index.html` loads with no console errors
+- [x] Local dev server running (`npx serve .`)
+- [~] Fill `docs/THIRD_PARTY.md` for chess.js and Stockfish (chess.js done, Stockfish pending)
 
 **Done when:** you can open the page locally and it is in GitHub.
 
@@ -40,7 +40,7 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 
 **Goal:** paste a game, see it play, find the key moments, export a clip.
 
-- [ ] PGN input box + chess.js parsing, with clear error for invalid PGN
+- [x] PGN input box + chess.js parsing, with clear error for invalid PGN
 - [ ] Canvas board renders a position (`board.js`)
 - [ ] Move playback: play, pause, step, speed (`ui.js`)
 - [ ] Chess.com + Lichess username import, pick a game (`api.js`)
@@ -107,6 +107,9 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 |---|---|---|
 | 2026-10-27 | Stockfish WASM in browser | Free, no server cost |
 | 2026-10-27 | Plain HTML/CSS/JS in separate files | Learning fundamentals, owner preference |
+| 2026-10-27 | New module `js/pgn.js` (PGN text to game data) | None of the existing module roles fits parsing; keeps `ui.js` free of chess logic |
+| 2026-10-27 | chess.js vendored as ESM in `frontend/vendor/` | No bundler in this project; `npx serve` needs a plain file path |
+| 2026-10-27 | Agent gives complete working code in a zip with every update (no hints-only, no TODO markers) | Owner preference |
 | 2026-10-27 | Backend: Node.js + Express with Supabase (Postgres, auth, storage). Revisit at the start of Phase 2; Django is the alternative (use its own auth and Postgres, drop Supabase, never both) | One language across the project, thin backend. Phase 1 needs no backend |
 
 ---
@@ -116,6 +119,9 @@ Legend: `[ ]` not started, `[~]` in progress, `[x]` done
 | Date | Phase | What changed |
 |---|---|---|
 | 2026-10-27 | 0 | Project scaffolded, PRD v2.0 added |
+| 2026-10-27 | 0-1 | Repo pushed, page served. chess.js vendored |
+| 2026-10-27 | 1 | PGN input + parsing done (`pgn.js`, `ui.js`, `main.js`), favicon 404 silenced |
+| 2026-10-27 | - | AI agent rules 6-7 changed: complete working code every update, no TODO markers |
 
 ---
 
@@ -140,10 +146,10 @@ Rules for any AI agent (Claude, Copilot, Cursor, etc.) writing code in this repo
 3. **One task per change.** Keep changes small and reviewable. No unrelated refactors.
 4. **Do not change decisions** (stack, structure, phases) silently. Flag the change and log it in the Decisions log.
 
-### The owner is learning
+### The owner is learning (explain, but ship working code)
 5. The owner's goal is developer-level understanding, so **explain the data flow** of every module you touch: what goes in, what happens, what comes out.
-6. Prefer **hints, review and small steps**. Give full code only when asked. Never dump large amounts of code the owner cannot explain.
-7. Add short comments for **why**, not what. Leave `TODO` markers for work left to the owner.
+6. **Give complete, working code** in a zip with every update, ready to copy over the repo. No placeholders, no skeletons.
+7. Add short comments for **why**, not what. No `TODO` markers.
 8. When giving run or test steps, use **simple numbered steps** (what to run, what to expect).
 
 ### Code rules
